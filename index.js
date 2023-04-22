@@ -4,7 +4,7 @@ require('dotenv').config();
 
 async function tweetBTC() {
     // const url = 'https://inscribe.news/api/data/ord-news'
-    const url = 'https://twitter-bot-inscriptions-api.onrender.com/'
+    const url = 'https://inscribe.news/api/data/ord-news'
 
     let last_tweet_name = ""
     let last_tweet_id = ""
