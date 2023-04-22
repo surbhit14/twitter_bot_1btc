@@ -1,13 +1,8 @@
-const express = require('express')
-const app = express()
 const axios = require('axios')
 const port = 3000
 require('dotenv').config();
 
-app.listen(port, async () => {
-
-    console.log('Server running at port 3000')
-
+async function tweetBTC() {
     // const url = 'https://inscribe.news/api/data/ord-news'
     const url = 'https://inscribe.news/api/data/ord-news'
 
@@ -34,7 +29,7 @@ app.listen(port, async () => {
 
         let tweet_body_trimmed
 
-        if (typeof(tweet_body) == 'string')
+        if (typeof (tweet_body) == 'string')
             tweet_body_trimmed = tweet_body.length > (260 - tweet_url.length) ? tweet_body.slice(0, (260 - tweet_url.length)) + "..." : tweet_body;
 
         let tweet_b_text = tweet_body_trimmed + " " + tweet_url
@@ -77,8 +72,8 @@ app.listen(port, async () => {
 
                     let tweet_body_trimmed_local = ""
 
-                    if (typeof(tweet_body_resp['data']['body']) == "string")
-                    tweet_body_trimmed_local = tweet_body_resp['data']['body'].substring(0, tweet_body_resp['data']['body'].indexOf(".")+1);
+                    if (typeof (tweet_body_resp['data']['body']) == "string")
+                        tweet_body_trimmed_local = tweet_body_resp['data']['body'].substring(0, tweet_body_resp['data']['body'].indexOf(".") + 1);
 
 
                     let tweet_b_text = tweet_body_trimmed_local + " " + tweet_body_resp['data']['url']
@@ -113,5 +108,6 @@ app.listen(port, async () => {
     } catch (error) {
         console.log(error)
     }
+}
 
-})
+tweetBTC()
