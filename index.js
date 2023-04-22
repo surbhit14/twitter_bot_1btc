@@ -1,9 +1,12 @@
-const axios = require('axios')
-const port = 3000
-require('dotenv').config();
+const http = require('http');
+const PORT = 3000;
 
-async function tweetBTC() {
-  console.log("abc"); 
-}
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World!');
+});
 
-tweetBTC()
+server.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}/`);
+});
