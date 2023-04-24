@@ -90,7 +90,7 @@ async function tweetBTC() {
                             }
                         })
                     } catch (error) {
-                        // console.log(error)
+                        console.log(error)
                     }
 
                     resp_last_tweet_name = response['data']['keys'][len - 1 - i]['name']
