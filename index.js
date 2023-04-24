@@ -1,11 +1,45 @@
 const axios = require('axios')
 const port = 3000
 require('dotenv').config();
+const OAuth = require('oauth-1.0a');
+const crypto = require('crypto');
+
 
 async function tweetBTC() {
+    
+    const oauth = OAuth({
+  consumer: {
+    key: process.env.TWITTER_CONSUMER_KEY,
+    secret: process.env.TWITTER_CONSUMER_SECRET,
+  },
+  signature_method: 'HMAC-SHA1',
+  hash_function(base_string, key) {
+    return crypto
+      .createHmac('sha1', key)
+      .update(base_string)
+      .digest('base64');
+  },
+});
+    
+    
     // const url = 'https://inscribe.news/api/data/ord-news'
     const url = 'https://twitter-bot-inscriptions-api.onrender.com'
+    
+    const requestData = {
+  url: 'https://api.twitter.com/1.1/statuses/update.json',
+  method: 'POST',
+  data: {
+    status: 'Hello, Twitter from my bot!',
+  },
+};
 
+// Generate the authorization headers
+const token = {
+  key: process.env.TWITTER_ACCESS_TOKEN,
+  secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+};
+const headers = oauth.toHeader(oauth.authorize(requestData, token));
+    
     let last_tweet_name = ""
     let last_tweet_id = ""
 
