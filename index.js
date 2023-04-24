@@ -29,7 +29,7 @@ async function tweetBTC() {
 
         let tweet_body_trimmed
 
-        if (typeof (tweet_body) == 'string')
+        if (typeof (tweet_body) == 'string' && typeof(tweet_url) == 'string' )
             tweet_body_trimmed = tweet_body.length > (260 - tweet_url.length) ? tweet_body.slice(0, (260 - tweet_url.length)) + "..." : tweet_body;
 
         let tweet_b_text = tweet_body_trimmed + " " + tweet_url
